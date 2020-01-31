@@ -1,0 +1,21 @@
+{
+  "name": "nodesampleapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "nodemonConfig": {
+    "ignore": ["*.json"]
+  },
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
