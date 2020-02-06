@@ -2,11 +2,30 @@ const router = require("express").Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const verify = require("../verify").verify
 
 
-// router.get("/",(req,res)=>{
-//     res.send("hello");
-// });
+router.get("/",(req,res)=>{
+    verify(req.headers["headerauth"]).then((data)=>{
+        if(data.usertype != "admin"){
+            res.send([data]);
+            return;
+        }
+        fs.readFile('users.json',(err,users)=>{
+            if(err){
+                res.status(404).send("Register First");
+            }else{
+                users = JSON.parse(users);
+                users.forEach((user)=>{
+                    delete user.password;
+                })
+                res.send(users);                
+            }
+        });
+    }).catch((err)=>{
+        res.status(err.code).send(err.message);
+    })
+});
 
 router.post("/login",(req,res)=>{
     if(!req.body.username){

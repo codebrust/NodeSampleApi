@@ -12,5 +12,5 @@ app.listen(3030,()=>{
     console.log("Server Started");
 })
 app.get("/",(req,res)=>{res.send("Welcome to Sample Api")})
-app.use("/users",require('./user'));
+app.use("/users",require('./routes/user'));
 
